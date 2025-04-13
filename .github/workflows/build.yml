@@ -94,9 +94,9 @@ jobs:
     - name: Configure autotools (macOS)
       if: runner.os == 'macOS'
       run: |
-        ./configure \
+        ./configure ARIA2_STATIC=yes \
           --without-openssl --without-gnutls --with-appletls \
-          --disable-nls
+          --disable-nls --disable-bittorrent --disable-metalink
     - name: Build aria2
       run: |
         make -j"$(nproc 2> /dev/null || sysctl -n hw.ncpu)" check
